@@ -1,13 +1,10 @@
 import './App.css';
-import NavBar from './componentes/NavBar';
-import Saludo from './containers/ItemListContainer';
+import Router from './routes';
 
 function App() {
+
   return (
-    <div className="App">
-      <NavBar/>
-      <Saludo greeting={'Bienvenidos!'}/>
-    </div>
+    <Router/>
   );
 }
 

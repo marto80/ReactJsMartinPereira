@@ -1,0 +1,10 @@
+.detalle{
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+    padding: 1%;
+    border: solid 2px gray;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 3%;
+}
