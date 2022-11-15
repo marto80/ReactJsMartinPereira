@@ -11,7 +11,7 @@ const ItemDetailContainer = () => {
     useEffect(() => {
        const getCharacterDet = async()=>{
             const response = await fetch (`https://rickandmortyapi.com/api/character/${id}`)
-            const character = response.json();
+            const character = await response.json();
             setCharacter(character)
         }
         getCharacterDet()
