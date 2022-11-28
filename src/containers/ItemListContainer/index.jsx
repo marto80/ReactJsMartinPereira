@@ -2,14 +2,19 @@ import React, {useEffect, useState} from 'react';
 import './estilos.css';
 import ItemList from '../../components/ItemList';
 import { useParams } from 'react-router-dom';
+import Ad from '../../components/Ad';
 
 export default function ItemListContainer ({greeting}) {
 
     const [products, setProducts] = useState([])
 
+    const [adView, setAdView] = useState (true)
+
     const {categoryId} = useParams()
 
-
+    const handleClose = () =>{
+        setAdView(false);
+    }
 
     useEffect(()=> {
         ( async ()=> {
@@ -27,9 +32,43 @@ export default function ItemListContainer ({greeting}) {
         })()
     }, [categoryId])
 
+    useEffect(() => {
+        const handleEsc = (evento) => {
+            console.log(evento);
+
+            if (evento.keyCode === 27) {
+                setAdView(false)
+                window.removeEventListener("keydown", handleEsc);
+            }
+
+        };
+
+        window.addEventListener("keydown", handleEsc);
+
+        return () => {
+            console.log("Se desmontará el componente, por lo tanto desrregistramos el evento");
+        };
+    }, []);
+
+
+
     return (
         <>
-            <ItemList products={products}/>
+       {products.length ? (
+                <ItemList products={products} />
+            ) : (
+                <h2>Loadingggggg</h2>
+            )}
+
+            {adView ? <Ad>
+                <h1>Anunciazo</h1>
+                <button onClick={handleClose}>Cerrar</button>
+
+            </Ad>
+            :
+            null
+            }
         </>
     )
+    
 }

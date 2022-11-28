@@ -17,7 +17,7 @@ const ItemDetailContainer = () => {
         getCharacterDet()
 
 
-    }, [id])
+    }, [id])    
 
     return(character ? <ItemDetail character={character}/> : "Cargando")
 };
